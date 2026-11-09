@@ -5,6 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Jorge Sousa · Engineering Lead</title>
 <meta name="description" content="Jorge Sousa, Engineering Lead at Mindera. Nearly 20 years building software and leading teams. On people, culture and leadership in tech, and the things I build at night.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="theme-color" content="#0e0e0c">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -25,9 +29,10 @@ img{display:block;max-width:100%}
 .mono{font-family:var(--mono);font-size:12px;letter-spacing:.04em;text-transform:uppercase;color:var(--muted)}
 
 /* top bar */
-.bar{position:fixed;inset:0 0 auto 0;z-index:50;mix-blend-mode:difference;color:#fff}
+.bar{position:fixed;inset:0 0 auto 0;z-index:50;background:var(--bg);color:var(--fg);border-bottom:1px solid transparent;transition:border-color .3s}
+.bar.scrolled{border-bottom-color:var(--line)}
 .bar .wrap{display:flex;justify-content:space-between;align-items:center;height:64px;gap:16px}
-.bar .mono{color:#fff}
+.bar .mono{color:var(--fg)}
 .bar nav{display:flex;gap:28px}
 .bar nav a{font-family:var(--mono);font-size:12px;text-transform:uppercase;letter-spacing:.04em;position:relative}
 .bar nav a::after{content:"";position:absolute;left:0;bottom:-3px;height:1px;width:100%;background:currentColor;transform:scaleX(0);transform-origin:right;transition:transform .35s var(--ease)}
@@ -517,6 +522,10 @@ document.querySelectorAll('.hl li').forEach(li=>{
   li.addEventListener('mousemove',e=>{tx=e.clientX+180;ty=e.clientY});
   li.addEventListener('mouseleave',()=>fl.classList.remove('on'));
 });
+// Menu: hairline under the opaque bar once the page scrolls
+const bar=document.querySelector('.bar');
+const onBar=()=>bar.classList.toggle('scrolled',scrollY>8);
+addEventListener('scroll',onBar,{passive:true});onBar();
 </script>
 </body>
 </html>
