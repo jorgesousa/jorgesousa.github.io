@@ -14,7 +14,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#0e0e0c;--bg2:#161614;--fg:#f2efe8;--muted:#8f8b80;--line:#2a2925;
+  --bg:#0e0e0c;--bg2:#161614;--fg:#f2efe8;--muted:#8f8b80;--line:#2a2925;--line-strong:#6f6b62;
   --accent:#ff5b2e;--accent-ink:#0e0e0c;
   --sans:"Inter Tight",system-ui,sans-serif;--mono:"JetBrains Mono",ui-monospace,monospace;
   --ease:cubic-bezier(.22,1,.36,1);
@@ -148,7 +148,7 @@ section{padding:clamp(80px,12vw,160px) 0}
 /* impact: hover list + floating brand card */
 .hl{list-style:none;border-top:1px solid var(--line)}
 .hl li{display:grid;grid-template-columns:200px 1fr auto;gap:24px;align-items:center;padding:26px 0;border-bottom:1px solid var(--line);cursor:default}
-.hl h3{font-size:clamp(32px,5vw,72px);font-weight:700;letter-spacing:-.045em;line-height:1;color:#57544c;transition:color .3s,transform .5s var(--ease)}
+.hl h3{font-size:clamp(32px,5vw,72px);font-weight:700;letter-spacing:-.045em;line-height:1;color:#6f6b62;transition:color .3s,transform .5s var(--ease)}
 .hl li:hover h3{color:var(--fg);transform:translateX(12px)}
 .hl .meta{text-align:right}
 .hl .meta b{display:block;font-size:15px;font-weight:500}
@@ -189,7 +189,7 @@ section{padding:clamp(80px,12vw,160px) 0}
 .cr-ch{padding:0 24px 0 0;min-width:0}
 .cr-ch .mono{display:block;margin-bottom:14px;opacity:0;transition:opacity .6s}
 .cr-ch h3{overflow:hidden;font-size:clamp(32px,4vw,60px);font-weight:700;letter-spacing:-.045em;line-height:1;padding-bottom:.08em;margin-bottom:18px}
-.cr-ch h3 span{display:block;transform:translateY(110%);color:#57544c;transition:transform .9s var(--ease),color .4s}
+.cr-ch h3 span{display:block;transform:translateY(110%);color:#6f6b62;transition:transform .9s var(--ease),color .4s}
 .cr-ch ul{list-style:none;display:grid;gap:10px}
 .cr-ch li{display:flex;flex-direction:column;opacity:0;transform:translateY(14px);transition:opacity .6s var(--ease),transform .7s var(--ease)}
 .cr-ch li b{font-weight:600;font-size:17px}
@@ -218,7 +218,7 @@ section{padding:clamp(80px,12vw,160px) 0}
 .off-list b{display:block;font-weight:600;font-size:17px;letter-spacing:-.01em}
 .off-list span{color:var(--muted);font-size:14px}
 .ico{width:48px;height:48px;flex-shrink:0;overflow:visible}
-.ico .ln{fill:none;stroke:#57544c;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;transition:stroke .3s}
+.ico .ln{fill:none;stroke:#6f6b62;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;transition:stroke .3s}
 .ico .ac-ln{fill:none;stroke:var(--accent);stroke-width:1.5}
 .ico .fg{fill:var(--fg)}.ico .ac{fill:var(--accent)}
 .off-list li:hover .ln{stroke:var(--fg)}
@@ -242,6 +242,45 @@ section{padding:clamp(80px,12vw,160px) 0}
 @keyframes settle{to{transform:scale(1)}}
 @media (max-width:900px){.portrait{position:relative;top:auto;right:auto;width:150px;margin:0 0 24px}}
 @media (prefers-reduced-motion:reduce){.ph{clip-path:none}.ph img{transform:none}}
+/* work filters */
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 24px}
+.filters button{font:500 12px var(--mono);text-transform:uppercase;letter-spacing:.04em;color:var(--muted);background:none;border:1px solid var(--line);border-radius:99px;padding:9px 16px;cursor:pointer;transition:color .3s,border-color .3s,background .3s}
+.filters button span{color:var(--muted);margin-left:6px;transition:color .3s}
+.filters button:hover{color:var(--fg);border-color:#4a4842}
+.filters button.on{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.filters button.on span{color:var(--accent)}
+.work>*{transition:opacity .25s,transform .35s var(--ease)}
+.work>.out{opacity:0;transform:scale(.97)}
+.work>.gone{display:none}
+.work.filtered>*{grid-column:span 6!important}
+.work.filtered .p.wide{flex-direction:column}
+.work.filtered .p.wide .media{width:100%;aspect-ratio:16/10;min-height:0}
+.work.filtered .p.xl .media{aspect-ratio:16/10}
+.work.filtered>.solo{grid-column:span 12!important}
+@media (max-width:900px){.work.filtered>*{grid-column:span 12!important}}
+.p.game .media{display:block}
+.p.game:hover{transform:translateY(-4px)}
+.actions{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap}
+.btn-play,.btn-code{font:600 11px var(--mono);text-transform:uppercase;letter-spacing:.04em;padding:9px 16px;border-radius:99px;white-space:nowrap;transition:transform .4s var(--ease),box-shadow .3s,border-color .3s,color .3s}
+.btn-play{background:var(--accent);color:#0e0e0c}
+.btn-play:hover{transform:scale(1.05);box-shadow:0 0 0 6px #ff5b2e33}
+.btn-code{border:1px solid var(--line);color:var(--muted)}
+.btn-code:hover{color:var(--fg);border-color:#4a4842}
+.lab .inside a.lab-play{background:var(--accent);border-color:var(--accent);color:#0e0e0c}
+.lab .inside a.lab-play:hover{background:#0e0e0c;color:var(--fg);border-color:#0e0e0c}
+.btn-play,.btn-code,.lab .inside a.lab-play{display:inline-flex;align-items:center;gap:8px;line-height:1;height:36px;padding-top:0;padding-bottom:0;box-sizing:border-box}
+.tri{width:8px;height:10px;fill:currentColor;flex-shrink:0}
+.btn-code{border-color:#4a4842;color:color-mix(in srgb,var(--fg) 78%,transparent)}
+.btn-code:hover{color:var(--fg);border-color:#6f6b62}
+.tri{width:7px;height:9px}
+.btn-play,.lab .inside a.lab-play{gap:9px}
+/* outlines on interactive controls: ≥3:1 against their background */
+.p .arrow,.cr-replay,.filters button,.btn-code{border-color:var(--line-strong)}
+.p:hover .arrow{border-color:var(--accent)}
+.cr-replay:hover,.filters button:hover,.btn-code:hover{border-color:var(--muted)}
+.filters button.on{border-color:var(--fg)}
+.lab .inside a{border-color:#0e0e0c80}
+.chips span{border-color:#3a3934}
 /* life */
 .life{list-style:none;border-top:1px solid var(--line)}
 .life li{display:grid;grid-template-columns:200px 1.1fr 1fr 180px;gap:24px;align-items:baseline;padding:36px 0;border-bottom:1px solid var(--line)}
@@ -399,49 +438,55 @@ footer{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;paddin
   </div>
   <!-- Project card pattern: <a class="p reveal" href=REPO_OR_SITE> + <div class="media"><img src="img/NAME.gif" alt=… loading="lazy"></div> + body.
        Demo GIF = the README's autoplay loop (~720-860 px wide, 16:9), saved as img/NAME.gif. -->
+  <div class="filters" role="toolbar" aria-label="Filter projects">
+    <button class="on" data-f="all">All <span>9</span></button>
+    <button data-f="tools">Tools I needed <span>5</span></button>
+    <button data-f="learn">To learn &amp; share <span>2</span></button>
+    <button data-f="fun">Just for fun <span>2</span></button>
+  </div>
   <div class="work">
-    <a class="p xl reveal" href="https://jorgesousa.github.io/tab-rehab/">
+    <a data-cat="tools" class="p xl reveal" href="https://jorgesousa.github.io/tab-rehab/">
       <div class="media type" style="background:radial-gradient(circle at 80% 20%,#3a2f6b,#15131f 65%);flex-direction:column;align-items:flex-start;justify-content:flex-end;gap:10px"><span class="mono" style="color:#a99cf5">— Step 1 · Admit it</span><span>Hi. I have <span style="color:#ff6b5e">347</span><br>tabs open.</span></div>
       <div class="body"><div class="row"><h3>Tab Rehab</h3><span class="arrow">↗</span></div><p>A free Chrome extension for chronic tab hoarders. Close tabs without losing a thing, one at a time, with an undo for everything. Nothing leaves your laptop.</p><div class="chips"><span>Chrome extension</span><span>Productivity</span></div></div>
     </a>
-    <a class="p reveal" href="https://github.com/jorgesousa/onair">
+    <a data-cat="tools" class="p reveal" href="https://github.com/jorgesousa/onair">
       <div class="media"><img src="img/onair.jpg" alt="ONAIR, an IPTV player for macOS" loading="lazy"></div>
       <div class="body"><div class="row"><h3>ONAIR</h3><span class="arrow">↗</span></div><p>Just TV. An IPTV player for the Mac with no ads, no accounts and no tracking. Free and open source, built like it isn't.</p><div class="chips"><span>macOS</span><span>SwiftUI</span></div></div>
     </a>
-    <a class="p wide reveal" href="https://github.com/jorgesousa/companion-clock">
+    <a data-cat="tools" class="p wide reveal" href="https://github.com/jorgesousa/companion-clock">
       <div class="media"><img src="img/companion-clock.gif" alt="Companion Clock: a tap switches the desk clock from work to personal, a water reminder crumbles when tapped, rain runs inside the digits, and at night it dims to an ember" loading="lazy"></div>
       <div class="body"><div class="row"><h3>Companion Clock</h3><span class="arrow">↗</span></div><p>The clock on my desk that knows what's next. I hijacked a Xiaomi Mi Smart Clock and gave it two lives: meetings, steps and water by day, my calendar and my club after hours, and a dim ember at night.</p><div class="chips"><span>Mi Smart Clock</span><span>Web</span></div></div>
     </a>
-    <a class="p reveal" href="https://github.com/jorgesousa/apis-publicas-pt">
+    <a data-cat="learn" class="p reveal" href="https://github.com/jorgesousa/apis-publicas-pt">
       <div class="media type" style="background:linear-gradient(135deg,#0b3d2e,#006241 60%,#c8102e)">public<br>data<br>.pt</div>
       <div class="body"><div class="row"><h3>apis-publicas-pt</h3><span class="arrow">↗</span></div><p>Portugal's and the EU's public data, ready for AI agents: INE, IPMA, Banco de Portugal, Eurostat and more.</p><div class="chips"><span>AI</span><span>Agent skills</span></div></div>
     </a>
-    <a class="p reveal" href="https://github.com/jorgesousa/Unsit">
+    <a data-cat="tools" class="p reveal" href="https://github.com/jorgesousa/Unsit">
       <div class="media"><img src="img/unsit.gif" alt="Unsit: an island nudge from the notch tells you it's time to walk, and the menu bar panel tracks steps and water" loading="lazy"></div>
       <div class="body"><div class="row"><h3>Unsit</h3><span class="arrow">↗</span></div><p>Your chair can wait. A macOS menu bar app that syncs with your calendar, finds the gaps between your meetings and tells you when to walk, so you hit the step and water goals you set.</p><div class="chips"><span>macOS</span><span>Swift</span></div></div>
     </a>
-    <a class="p reveal" href="https://jorgesousa.github.io/flipside/">
-      <div class="media"><img src="img/flipside.gif" alt="All eight Flipside games playing at once" loading="lazy"></div>
-      <div class="body"><div class="row"><h3>Flipside</h3><span class="arrow">↗</span></div><p>Classic games, played from the wrong side: you're the apple dodging the snake, the brick dodging the ball.</p><div class="chips"><span>Game</span><span>Web</span></div></div>
-    </a>
-    <a class="p reveal" href="https://jorgesousa.github.io/level-liar/">
-      <div class="media"><img src="img/level-liar.gif" alt="Level Liar: the door runs away, the controls flip, the floor collapses" loading="lazy"></div>
-      <div class="body"><div class="row"><h3>Level Liar</h3><span class="arrow">↗</span></div><p>A not-so-honest platformer: the door runs away, the controls flip and the floor gives way.</p><div class="chips"><span>Game</span><span>Web</span></div></div>
-    </a>
-    <div class="lab span8 reveal">
+    <div data-cat="fun" class="p game reveal">
+      <a class="media" href="https://jorgesousa.github.io/flipside/" tabindex="-1" aria-hidden="true"><img src="img/flipside.gif" alt="All eight Flipside games playing at once" loading="lazy"></a>
+      <div class="body"><div class="row"><h3>Flipside</h3></div><p>Classic games, played from the wrong side: you're the apple dodging the snake, the brick dodging the ball.</p><div class="chips"><span>Game</span><span>Web</span></div><div class="actions"><a class="btn-play" href="https://jorgesousa.github.io/flipside/"><svg class="tri" viewBox="0 0 10 12" aria-hidden="true"><path d="M0 0L10 6L0 12Z"/></svg>Play now</a><a class="btn-code" href="https://github.com/jorgesousa/flipside">GitHub ↗</a></div></div>
+    </div>
+    <div data-cat="fun" class="p game reveal">
+      <a class="media" href="https://jorgesousa.github.io/level-liar/" tabindex="-1" aria-hidden="true"><img src="img/level-liar.gif" alt="Level Liar: the door runs away, the controls flip, the floor collapses" loading="lazy"></a>
+      <div class="body"><div class="row"><h3>Level Liar</h3></div><p>A not-so-honest platformer: the door runs away, the controls flip and the floor gives way.</p><div class="chips"><span>Game</span><span>Web</span></div><div class="actions"><a class="btn-play" href="https://jorgesousa.github.io/level-liar/"><svg class="tri" viewBox="0 0 10 12" aria-hidden="true"><path d="M0 0L10 6L0 12Z"/></svg>Play now</a><a class="btn-code" href="https://github.com/jorgesousa/level-liar">GitHub ↗</a></div></div>
+    </div>
+    <div data-cat="learn" class="lab span8 reveal">
       <div class="txt">
         <span class="mono">A family lab</span>
         <h3>Sousa Lab</h3>
         <p>Every project starts with a question from Francisco or Daniel, my sons. Instead of looking up the answer, we build something that shows it.</p>
         <div class="inside">
           <a href="https://jorgesousa.github.io/sousa-lab/">Visit the Lab ↗</a>
-          <a href="https://jorgesousa.github.io/print3d/">Print3D</a>
-          <a href="https://jorgesousa.github.io/faultline/">Faultline</a>
+          <a class="lab-play" href="https://jorgesousa.github.io/print3d/"><svg class="tri" viewBox="0 0 10 12" aria-hidden="true"><path d="M0 0L10 6L0 12Z"/></svg>Try Print3D</a>
+          <a class="lab-play" href="https://jorgesousa.github.io/faultline/"><svg class="tri" viewBox="0 0 10 12" aria-hidden="true"><path d="M0 0L10 6L0 12Z"/></svg>Play Faultline</a>
         </div>
       </div>
       <div class="shot" role="img" aria-label="A 3D printer mid-print in Print3D"></div>
     </div>
-    <a class="p wide reveal" href="https://github.com/jorgesousa/half-marathon-readiness">
+    <a data-cat="tools" class="p wide reveal" href="https://github.com/jorgesousa/half-marathon-readiness">
       <div class="media type" style="background:linear-gradient(160deg,#fc4c02,#7a1f00)">21.1<br>km</div>
       <div class="body"><div class="row"><h3>Half Marathon Readiness</h3><span class="arrow">↗</span></div><p>Reads my Strava training and scores my half-marathon readiness from 0 to 100, with a predicted time and AI coaching.</p><div class="chips"><span>Strava</span><span>AI</span></div></div>
     </a>
@@ -530,6 +575,20 @@ document.querySelectorAll('.hl li').forEach(li=>{
 const bar=document.querySelector('.bar');
 const onBar=()=>bar.classList.toggle('scrolled',scrollY>8);
 addEventListener('scroll',onBar,{passive:true});onBar();
+// Work filters
+(function(){
+  const work=document.querySelector('.work'), items=[...work.children], btns=[...document.querySelectorAll('.filters button')];
+  btns.forEach(b=>b.addEventListener('click',()=>{
+    const f=b.dataset.f; btns.forEach(x=>x.classList.toggle('on',x===b));
+    items.forEach(el=>el.classList.add('out'));
+    setTimeout(()=>{
+      work.classList.toggle('filtered',f!=='all');
+      items.forEach(el=>{const show=f==='all'||el.dataset.cat===f;el.classList.toggle('gone',!show);el.classList.remove('solo');el.classList.add('in')});
+      const vis=items.filter(el=>!el.classList.contains('gone'));if(f!=='all'&&vis.length%2)vis[vis.length-1].classList.add('solo');
+      requestAnimationFrame(()=>requestAnimationFrame(()=>items.forEach(el=>el.classList.remove('out'))));
+    },250);
+  }));
+})();
 </script>
 </body>
 </html>
